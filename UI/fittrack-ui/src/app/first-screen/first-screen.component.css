@@ -1,0 +1,30 @@
+body{
+    background-image: url('../../assets/first-page-background.png'); 
+    background-size:cover; 
+    background-repeat: no-repeat; 
+}
+.container {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    height: 100vh; 
+}
+#registerButton, #loginButton{
+    padding: 5px;
+    width: 10%; 
+    height: 4%;
+    margin-top: 35%; 
+    border-radius: 10px; 
+    border: none;
+    font-size: 16px;
+    background-color: orange; 
+    color: #fff; 
+}
+
+#registerButton:hover, #loginButton:hover{
+    background-color: rgb(253, 140, 96); 
+}
+
+#loginButton{
+    margin-left: 2%;
+}

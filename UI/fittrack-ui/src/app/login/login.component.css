@@ -1,0 +1,56 @@
+.container {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    height: 100vh; 
+}
+
+.login-card {
+    width: 400px; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+}
+
+.formFields{
+    width: 100%;
+}
+
+.mat-input-element {
+    height: 100%; 
+}
+
+
+#submitButton{
+    padding: 5px;
+    margin-left:30%;
+    width: 40%; 
+    margin-top: 20px; 
+    border: none;
+    border-radius: 10px; 
+    font-size: 16px;
+    background-color: orange; 
+    color: #fff; 
+}
+
+#submitButton:hover{
+    background-color: rgb(253, 140, 96); 
+}
+
+body {
+    background-image: url('../../assets/background.png'); 
+    background-size:cover; 
+    background-repeat: no-repeat; 
+}
+
+#loginTitle{
+    position: relative;
+    width: 100%;
+    margin-left: 50%;
+    margin-bottom: 10%;
+}

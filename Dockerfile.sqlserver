@@ -1,0 +1,7 @@
+FROM mcr.microsoft.com/mssql/server:2017-latest-ubuntu
+
+RUN mkdir -p /docker-entrypoint-initdb.d
+
+COPY ./docker-entrypoint-initdb.d/001_script.sql /docker-entrypoint-initdb.d/
+
+ENTRYPOINT /opt/mssql/bin/sqlservr & sleep 40s && /opt/mssql-tools/bin/sqlcmd -S fittrack-sql,1433 -U sa -P "yourStrong(!)Password" -d master -i /docker-entrypoint-initdb.d/001_script.sql && tail -f /dev/null

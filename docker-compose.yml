@@ -1,0 +1,39 @@
+version: '3'
+services:
+  fittrack-sql:
+    build:
+      context: .
+      dockerfile: Dockerfile.sqlserver
+    restart: unless-stopped
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=yourStrong(!)Password
+      - MSSQL_PID=Developer
+    ports:
+      - 1401:1433
+    expose:
+      - 1433
+    networks:
+      - fittracknet
+      
+  fittrack-api:
+    restart: unless-stopped
+    build:
+      context: .
+    environment:
+      - ConnectionStrings:DefaultConnection=Server=fittrack-sql,1433;Database=FitTrack;User=sa;Password=yourStrong(!)Password;ConnectRetryCount=0; TrustServerCertificate=True; MultipleActiveResultSets=true
+      - ASPNETCORE_ENVIRONMENT=Development
+      - API_HOST=localhost
+      - API_PORT=7125
+    ports:
+      - 7125:7125 
+    networks:
+      - fittracknet
+    links:
+      - fittrack-sql
+    depends_on:
+      - fittrack-sql
+  
+networks:
+  fittracknet:
+    driver: bridge      

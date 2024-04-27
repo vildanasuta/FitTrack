@@ -28,6 +28,8 @@ ng serve
 
 This command will start the Angular development server for the UI.
 
+(You may need to install packages before starting the UI with "npm install")
+
 ## Usage
 
 Once the containers are up and the UI server is running, you can access FitTrack by navigating to `http://localhost:4200` in your web browser.

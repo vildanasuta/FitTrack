@@ -6,21 +6,29 @@ FitTrack is a project aimed at helping users track their fitness progress.
 
 To get started with FitTrack, follow these steps:
 
-1. Clone the repository:
+#### 1. Clone the repository:
+
 git clone https://github.com/your-username/FitTrack.git
 
-2. Navigate to the root directory of the project:
+#### 2. Navigate to the root directory of the project:
+
 cd FitTrack
 
-3. Start the Docker containers using Docker Compose:
+#### 3. Start the Docker containers using Docker Compose:
+
 docker-compose up --build
+
 This command will create and start the database container, fill it with initial data, and start the API server.
 
-4. Start the UI part:
+#### 4. Start the UI part:
+
 cd UI/fittrack-ui
+
 ng serve
 
 This command will start the Angular development server for the UI.
+
+(You may need to install packages before starting the UI with "npm install")
 
 ## Usage
 
@@ -35,3 +43,8 @@ You can use the following credentials to log in as an existing user:
 
 
 
+![First Screen](screen-images/1.png)
+![Fourth Screen](screen-images/4.png)
+![Sixth Screen](screen-images/6.png)
+![Sevent Screen](screen-images/7.png)
+![Eigth Screen](screen-images/8.png)

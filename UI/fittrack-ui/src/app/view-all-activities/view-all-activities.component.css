@@ -1,0 +1,29 @@
+#activities{
+  overflow-y:scroll;
+  height:100%;
+}
+#searchField{
+  width: 100%;
+}
+.button-container{
+  height: 100%;
+}
+#matListItem{
+  height: 100%;
+}
+
+#dateFilter,
+#typeFilter {
+  display: flex;
+}
+
+
+#filterButtons {
+  display: flex;
+  align-items: center;
+  margin-left:65%;
+}
+
+#filterButtons button {
+  margin-right: 8px; 
+}

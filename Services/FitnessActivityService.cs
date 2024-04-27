@@ -2,6 +2,7 @@
 using FitTrack.Model;
 using FitTrack.Model.Requests;
 using FitTrack.Model.SearchObjects;
+using Microsoft.EntityFrameworkCore;
 
 namespace FitTrack.Services
 {
@@ -11,17 +12,30 @@ namespace FitTrack.Services
         {
         }
 
-        async Task<PagedResult<Model.FitnessActivity>> IFitnessActivityService.GetFilteredByDate(DateTime date)
+        public async Task<List<Services.FitnessActivity>> GetFilteredByDate(DateOnly date)
         {
-            var searchObject = new FitnessActivitySearchObject { ActivityDate = date };
-            var filteredActivities = await Get(searchObject);
+            var filteredActivities = await _context.FitnessActivities
+                .Where(a => a.ActivityDate == date)
+                .ToListAsync();
+
             return filteredActivities;
         }
 
-        public async Task<PagedResult<Model.FitnessActivity>> GetFilteredByActivityType(int activityTypeId)
+        public async Task<List<Services.FitnessActivity>> GetFilteredByActivityType(int activityTypeId)
         {
-            var searchObject = new FitnessActivitySearchObject { ActivityTypeId = activityTypeId };
-            var filteredActivities = await Get(searchObject);
+            var filteredActivities = await _context.FitnessActivities
+                .Where(a => a.ActivityTypeId == activityTypeId)
+                .ToListAsync();
+
+            return filteredActivities;
+        }
+
+        public async Task<List<Services.FitnessActivity>> GetAllActivitiesForUserAndDate(int userId, DateOnly date)
+        {
+            var filteredActivities = await _context.FitnessActivities
+                .Where(a => a.UserId == userId && a.ActivityDate == date)
+                .ToListAsync();
+
             return filteredActivities;
         }
     }

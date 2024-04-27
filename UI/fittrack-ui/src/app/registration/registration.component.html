@@ -1,6 +1,6 @@
 <body>
-    <!-- register.component.html -->
-<div class="container">
+  <!-- register.component.html -->
+  <div class="container">
     <mat-card class="registration-card">
       <mat-card-header id="registerHeader">
         <mat-card-title id="registerTitle">Create your account</mat-card-title>
@@ -8,40 +8,44 @@
       <mat-card-content>
         <form #registerForm="ngForm">
 
-            <mat-form-field appearance="outline" class="formFields">
-                <mat-label>Username</mat-label>
-                <input matInput placeholder="Enter your username" 
-                [(ngModel)]="username" name="username" id="username" required>
-                <mat-error *ngIf="usernameNotValid">
-                    Username must be at least 5 characters.
-                </mat-error>
-              </mat-form-field>
+          <mat-form-field appearance="outline" class="formFields">
+            <mat-label>Username</mat-label>
+            <input matInput placeholder="Enter your username" [(ngModel)]="username" name="username" id="username"
+              required minlength="5" #usernameInput="ngModel">
+            <mat-error *ngIf="usernameInput.invalid && (usernameInput.dirty || usernameInput.touched)">
+              <span *ngIf="usernameInput.errors?.['required']">Username is required.</span>
+              <span *ngIf="usernameInput.errors?.['minlength']">Username must be at least 5 characters.</span>
+            </mat-error>
+          </mat-form-field>
 
           <mat-form-field appearance="outline" class="formFields">
             <mat-label>Email</mat-label>
-            <input matInput type="email" 
-            placeholder="Enter your email" 
-            [(ngModel)]="email" 
-            name="email" id="email" required>
-            <mat-error *ngIf="emailNotValid">
-                Email must be in a valid format.
+            <input matInput type="email" placeholder="Enter your email" [(ngModel)]="email" name="email" id="email"
+              required pattern="[^\s@]+@[^\s@]+\.[^\s@]+" #emailInput="ngModel">
+            <mat-error *ngIf="emailInput.invalid && (emailInput.dirty || emailInput.touched)">
+              <span *ngIf="emailInput.errors?.['required']">Email is required.</span>
+              <span *ngIf="emailInput.errors?.['pattern']">Invalid email format.</span>
             </mat-error>
           </mat-form-field>
-          
+
+
+
           <mat-form-field appearance="outline" class="formFields">
             <mat-label>Password</mat-label>
-            <input matInput type="password" placeholder="Enter your password" 
-            [(ngModel)]="password" name="password" id="password" required>
-             <mat-error *ngIf="passwordNotValid">
-                Password must be at least 8 characters long.
+            <input matInput type="password" placeholder="Enter your password" [(ngModel)]="password" name="password"
+              id="password" required minlength="8" #passwordInput="ngModel">
+            <mat-error *ngIf="passwordInput.invalid && (passwordInput.dirty || passwordInput.touched)">
+              <span *ngIf="passwordInput.errors?.['required']">Password is required.</span>
+              <span *ngIf="passwordInput.errors?.['pattern']">Password must be at least 8 characters long.</span>
             </mat-error>
           </mat-form-field>
-          <button mat-raised-button color="primary" 
-          type="submit" (click)="onSubmit()"
-          id="submitButton">Register</button>
+          <button mat-raised-button color="primary" type="submit" (click)="onSubmit()"
+            id="submitButton">Register</button>
+
+            <a mat-raised-button (click)="goToLogin()" target="_blank" id="loginInstead">Already have an account? Login here.</a>
         </form>
       </mat-card-content>
     </mat-card>
   </div>
-  
+
 </body>

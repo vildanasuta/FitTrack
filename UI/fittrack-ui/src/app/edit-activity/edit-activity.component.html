@@ -1,0 +1,34 @@
+<h2 mat-dialog-title>Edit activity</h2>
+<form #activityForm="ngForm" (ngSubmit)="submitForm()" id="editActivityFrm">
+    <mat-form-field class="formFields">
+        <mat-label>Title</mat-label>
+      <input matInput placeholder="Title*" [(ngModel)]="formData.title" name="title" required>
+    </mat-form-field>
+    <mat-form-field class="formFields">
+      <mat-label>Description</mat-label>
+      <textarea matInput placeholder="Description" [(ngModel)]="formData.description" name="description"></textarea>
+    </mat-form-field>
+    <mat-form-field class="formFields">
+      <mat-label>Activity Date</mat-label>
+      <input matInput [matDatepicker]="activityDatePicker" placeholder="Activity Date*" [(ngModel)]="formData.activityDate" name="activityDate" required>
+      <mat-datepicker-toggle matSuffix [for]="activityDatePicker"></mat-datepicker-toggle>
+      <mat-datepicker #activityDatePicker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="formFields">
+        <mat-label>Activity Time</mat-label>
+        <input matInput type="time" id="activityTime" placeholder="Activity Time*" [(ngModel)]="formData.activityTime" name="activityTime" required>
+        <mat-icon matSuffix>access_time</mat-icon>
+          </mat-form-field>
+    <mat-form-field class="formFields">
+      <mat-label>Duration (in minutes)</mat-label>
+      <input matInput type="number" placeholder="Duration (in minutes)*" [(ngModel)]="formData.durationInMinutes" name="durationInMinutes" required="">
+    </mat-form-field>
+    <mat-form-field class="formFields">
+      <mat-label>Activity Type</mat-label>
+      <mat-select [(ngModel)]="formData.activityTypeId" name="activityTypeId" required>
+        <mat-option *ngFor="let activityType of activityTypes" [value]="activityType.activityTypeId">{{ activityType.name }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button mat-stroked-button color="warn" type="submit" [disabled]="!activityForm.valid">Submit</button>
+  </form>
+  

@@ -1,0 +1,36 @@
+<div id="activities">
+  <h2 mat-dialog-title>All activities</h2>
+  <mat-form-field id="searchField">
+    <input matInput type="text" placeholder="Search by name or description" [(ngModel)]="searchQuery" (input)="onSearch()" id="search">
+  </mat-form-field>
+   <mat-form-field id="dateFilter">
+    <input matInput [matDatepicker]="picker" placeholder="Filter by Activity Date" [(ngModel)]="dateFilter" (dateChange)="onSearch()">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+
+  <mat-form-field id="typeFilter">
+    <mat-label>Filter by Activity Type</mat-label>
+    <mat-select [(value)]="typeFilter" (selectionChange)="onSearch()">
+      <mat-option *ngFor="let type of activityTypes" [value]="type.activityTypeId">{{ type.name }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div id="filterButtons">
+    <button mat-stroked-button color="accent" (click)="resetFilters()">Reset Filters</button>
+    <button mat-stroked-button color="accent" (click)="clearSearch()">Clear Search</button>
+  </div>
+
+  <mat-list>
+    <mat-list-item *ngFor="let activity of filteredActivities" id="matListItem">
+          <span matListItemTitle>{{ activity.title }}</span>
+          <span *ngIf="activity.description" matTooltip="{{ activity.description }}">Description: {{ activity.description }}</span>
+          <span *ngIf="!activity.description" matTooltip="No description saved">No Description</span>
+          <span matListItemLine>Activity Date: {{ activity.activityDate }}</span>
+          <div class="button-container">
+            <button mat-stroked-button color="warn" (click)="editActivity(activity)">Edit Activity</button>
+            <button mat-stroked-button color="warn" (click)="deleteActivity(activity.fitnessActivityId)">Delete Activity</button>
+          </div>
+    </mat-list-item>
+  </mat-list>
+</div>

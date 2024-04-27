@@ -1,0 +1,84 @@
+.dashboard-container {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    overflow-y: hidden;
+    overflow-x: hidden;
+  }
+  
+  .sidebar {
+    width: 20%;
+    height: 100%;
+    padding: 20px;
+    color: white;
+    background-color: rgb(253, 140, 96); 
+    position: relative; 
+    overflow-y: hidden;
+    overflow-x: hidden;
+  }
+  
+  .logo{
+    max-width: 100%;
+    max-height: 100%;
+    display: block;
+    position: absolute; 
+    top: 0px; 
+    left: 0px; 
+  }
+
+  .user-photo{
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+  }
+  .content {
+    width: 80%;
+    height: 100%;
+    padding: 100px;
+    background-image: url('../../assets/background-blur.png'); 
+    background-size:cover; 
+    background-repeat: no-repeat; 
+    overflow-y: scroll;
+    overflow-x: hidden;
+  }
+  
+  .user-details {
+    margin-top:220px;
+    margin-bottom: 20px;
+  }
+  
+  .settings-btn,
+  .logout-btn,
+  .add-activity-btn,
+  .view-activities-btn {
+    display: flex;
+    margin-bottom: 10px;
+  }
+  
+  .goal-card {
+    width: 80%;
+    padding: 20px;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    margin-bottom: 15%;
+  }
+
+  #settingsButton, #logoutButton{
+    display: flex;
+    margin-bottom:3%;
+    width: 100%;
+  }
+  
+  #addNewActivityButton{
+    margin-top:0.5%;
+  }
+
+  #viewAllActivitiesButton{
+    margin-left:2%;
+  }
+  
+
+  #addNewActivityButton,#viewAllActivitiesButton{
+    width: 40%;
+    margin-bottom: 5%;
+  }

@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import {MatButtonModule} from '@angular/material/button';
 
 @Component({
   selector: 'app-first-screen',
   standalone: true,
-  imports: [],
+  imports: [
+    MatButtonModule
+  ],
   templateUrl: './first-screen.component.html',
   styleUrl: './first-screen.component.css'
 })

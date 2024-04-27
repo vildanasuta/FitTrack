@@ -4,7 +4,9 @@ namespace FitTrack.Services
 {
     public interface IFitnessActivityService : ICRUDService<Model.FitnessActivity, Model.SearchObjects.FitnessActivitySearchObject, Model.Requests.FitnessActivityCreateRequest, Model.Requests.FitnessActivityUpdateRequest>
     {
-        public Task<PagedResult<Model.FitnessActivity>> GetFilteredByDate(DateTime date);
-        public Task<PagedResult<Model.FitnessActivity>> GetFilteredByActivityType(int activityId);
+        public Task<List<Services.FitnessActivity>> GetFilteredByDate(DateOnly date);
+        public Task<List<Services.FitnessActivity>> GetFilteredByActivityType(int activityId);
+        public Task<List<Services.FitnessActivity>> GetAllActivitiesForUserAndDate(int userId, DateOnly date);
+
     }
 }

@@ -1,0 +1,65 @@
+<div id="newActivityForm">
+<form [formGroup]="activityForm" (ngSubmit)="onSubmit()">
+    <div id="titleDiv">
+    <h2 mat-dialog-title>New activity</h2>
+    <mat-form-field appearance="outline" class="formFields">
+      <mat-label for="title">Title:</mat-label>
+      <input matInput type="text" id="title" formControlName="title">
+      <mat-error *ngIf="activityForm.get('title')?.invalid && activityForm.get('title')?.touched">
+        Title is required
+      </mat-error>
+      </mat-form-field>
+    </div>
+    <div id="descriptionDiv">
+    <mat-form-field appearance="outline" class="formFields">
+        <mat-label for="description">Description:</mat-label>
+    <textarea matInput id="description" formControlName="description"></textarea>
+    </mat-form-field>
+    </div>
+
+    <div>
+        <mat-form-field appearance="outline" class="formFields">
+          <mat-label>Activity Type:</mat-label>
+          <mat-select formControlName="activityType">
+            <mat-option *ngFor="let type of activityTypes" [value]="type.activityTypeId">
+              {{ type.name }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="activityForm.get('activityType')?.invalid && activityForm.get('activityType')?.touched">
+            Activity type is required
+          </mat-error>
+        </mat-form-field>
+      </div>
+    <div>
+        <mat-form-field appearance="outline" class="formFields">
+            <mat-label for="activityDate">Activity Date:</mat-label>
+            <input matInput [matDatepicker]="picker" id="activityDate" formControlName="activityDate">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error *ngIf="activityForm.get('activityDate')?.invalid && activityForm.get('activityDate')?.touched">
+              Activity date is required
+            </mat-error>
+          </mat-form-field>
+    </div>
+    <div>
+        <mat-form-field appearance="outline" class="formFields">
+      <mat-label for="activityTime">Activity Time:</mat-label>
+      <input matInput type="time" id="activityTime" formControlName="activityTime">
+      <mat-icon matSuffix>access_time</mat-icon>
+      <mat-error *ngIf="activityForm.get('activityTime')?.invalid && activityForm.get('activityTime')?.touched">
+        Activity time is required
+      </mat-error>
+        </mat-form-field>
+    </div>
+    <div>
+        <mat-form-field appearance="outline" class="formFields">
+      <mat-label for="durationInMinutes">Duration (in minutes):</mat-label>
+      <input matInput type="number" id="durationInMinutes" formControlName="durationInMinutes">
+      <mat-error *ngIf="activityForm.get('durationInMinutes')?.invalid && activityForm.get('durationInMinutes')?.touched">
+        Duration is required
+      </mat-error>
+      </mat-form-field>
+    </div>
+    <button mat-button type="submit" [disabled]="activityForm.invalid" id="submitButton">Submit</button>
+  </form>
+</div>

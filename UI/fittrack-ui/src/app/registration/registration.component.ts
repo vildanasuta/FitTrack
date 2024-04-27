@@ -7,6 +7,10 @@ import { NgIf } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
+import { PopupComponent } from '../popup/popup.component';
+import { MatDialog } from '@angular/material/dialog';
+import {MatButtonModule} from '@angular/material/button';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registration',
@@ -18,6 +22,8 @@ import { HttpHeaders } from '@angular/common/http';
     MatInputModule,
     NgIf,
     HttpClientModule,
+    PopupComponent,
+    MatButtonModule
   ],
   templateUrl: './registration.component.html',
   styleUrl: './registration.component.css'
@@ -31,7 +37,7 @@ export class RegistrationComponent {
   usernameNotValid: boolean = false;
   passwordNotValid: boolean = false;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private dialog: MatDialog, private router: Router) { }
 
   onSubmit() {
 
@@ -48,23 +54,41 @@ const headers = new HttpHeaders({
   'Content-Type': 'application/json',
 });
 
-this.http.post<any>('http://localhost:7125/User', {
+this.http.post<any>('http://localhost:7125/User/register', {
   username: this.username,
   password: this.password,
   email: this.email,
-}, { headers }).subscribe({
+}, { headers })
+.subscribe({
   next: (response) => {
     console.log('User registered successfully:', response);
+    this.router.navigate(['/login']);
   },
   error: (error) => {
+    if(error.status==400){
+      this.openDialog(error.error.message);
+    }
+
+
     console.error('Error registering user:', error);
   }
 });
 
   }
 
+  openDialog(message: string): void {
+    this.dialog.open(PopupComponent, {
+      width: '250px',
+      data: { message: message }
+    });
+  }
+
   isEmailValid(email: string): boolean {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
+  }
+
+  goToLogin(){
+    this.router.navigate(['/login']);
   }
 }

@@ -1,0 +1,24 @@
+<div id="settingsDialog">
+  <h2 mat-dialog-title>Settings</h2>
+  <div mat-dialog-content *ngIf="!dataLoaded">
+    <mat-spinner diameter="30" id="spinner"></mat-spinner>
+  </div>
+  <div mat-dialog-content *ngIf="dataLoaded">
+    <mat-form-field>
+      <mat-label>Goal Type</mat-label>
+      <mat-select [(value)]="selectedGoalType">
+        <mat-option *ngFor="let goalType of goalTypes" [value]="goalType.goalTypeId">
+          {{ formatGoalTypeName(goalType.name) }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="formFields">
+      <mat-label>Value</mat-label>
+      <input matInput type="number" placeholder="Enter value" [(ngModel)]="value" name="value" id="value" required>
+    </mat-form-field>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button (click)="saveSettings()">Save settings</button>
+    <button mat-button (click)="onClose()">Close</button>
+  </div>
+</div>

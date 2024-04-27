@@ -18,7 +18,7 @@ namespace FitTrack.Controllers
         }
 
         [HttpGet("filterByDate")]
-        public async Task<IActionResult> FilterByDate(DateTime date)
+        public async Task<IActionResult> FilterByDate(DateOnly date)
         {
             var filteredActivities = await _fitnessActivityService.GetFilteredByDate(date);
             return Ok(filteredActivities);
@@ -28,6 +28,13 @@ namespace FitTrack.Controllers
         public async Task<IActionResult> FilterByActivityType(int activityTypeId)
         {
             var filteredActivities = await _fitnessActivityService.GetFilteredByActivityType(activityTypeId);
+            return Ok(filteredActivities);
+        }
+
+        [HttpGet("filterByUserAndDate")]
+        public async Task<IActionResult> FilterByUserAndDate(int userId, DateOnly date)
+        {
+            var filteredActivities = await _fitnessActivityService.GetAllActivitiesForUserAndDate(userId, date);
             return Ok(filteredActivities);
         }
     }

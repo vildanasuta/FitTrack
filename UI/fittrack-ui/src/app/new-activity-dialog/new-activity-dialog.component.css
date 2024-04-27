@@ -1,0 +1,11 @@
+#newActivityForm{
+    width: 70%;
+    height:100%;
+    padding:50px;
+}
+.formFields{
+    width: 100%;
+}
+#submitButton{
+    margin-left:70%;
+}

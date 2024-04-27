@@ -42,3 +42,7 @@ You can use the following credentials to log in as an existing user:
 
 
 ![First Screen](screen-images/1.png)
+![Fourth Screen](screen-images/4.png)
+![Sixth Screen](screen-images/6.png)
+![Sevent Screen](screen-images/7.png)
+![Eigth Screen](screen-images/8.png)
